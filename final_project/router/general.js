@@ -23,10 +23,43 @@ public_users.get('/isbn/:isbn',function (req, res) {
   
 // Get book details based on author
 public_users.get('/author/:author',function (req, res) {
-    const author = req.params.author;
+    //const author = req.params.author;
     //create an Object that goes through each book map and match the author
     //res.send(JSON object of matches)
-    res.send(books[author]);
+    //const keys = Object.keys(books);
+    // const filtered_books = {};
+    //const result = keys.filter(checkAuthor);
+    // keys.forEach(book => {
+    //     if (book.author === author) {
+    //         filtered_books.add(book)
+    //     }
+        
+    // });
+
+    // function checkAuthor(name) {
+    //     return name === author;
+    //   }
+    // res.send(JSON.stringify(result,null,4));
+    const author = req.params.author;  
+    //res.send(books);
+    const authorBooks = [];  
+    
+    // for (const [key, value] of Object.entries(object1)) {
+    //     console.log(`${key}: ${value}`);
+    //   }
+    for (const [key, value] in Object.entries(books)) {  
+      if (Object === author) {  
+        authorBooks.push(key, value);
+      }
+    }
+    
+    if (authorBooks.length > 0) {  
+      res.send(authorBooks);  
+    } 
+    else {
+      res.status(404).send('No books found for author');  
+    }
+
 });
 
 // Get all books based on title
