@@ -24,32 +24,32 @@ public_users.get('/isbn/:isbn',function (req, res) {
 // Get book details based on author
 public_users.get('/author/:author',function (req, res) {
     //const author = req.params.author;
-    //create an Object that goes through each book map and match the author
-    //res.send(JSON object of matches)
-    //const keys = Object.keys(books);
-    // const filtered_books = {};
-    //const result = keys.filter(checkAuthor);
-    // keys.forEach(book => {
-    //     if (book.author === author) {
-    //         filtered_books.add(book)
-    //     }
-        
-    // });
 
-    // function checkAuthor(name) {
-    //     return name === author;
-    //   }
     // res.send(JSON.stringify(result,null,4));
-    const author = req.params.author;  
-    //res.send(books);
+    let author = req.query.author;  
+    // res.send(typeof(author));
+
     const authorBooks = [];  
+    // res.send(author);
+    // const foundBook = Object.entries(books).find(
+    //     ([_, value]) => value.author === author
+    //   );
     
-    // for (const [key, value] of Object.entries(object1)) {
-    //     console.log(`${key}: ${value}`);
+    //   if (!foundBook) {
+    //     return res.status(404).json({ message: "Book not found" });
     //   }
+    
+    //   return res.status(200).json(foundBook);
+    
+
+    // Object.entries(obj).forEach(([key, value]) => {
+    //     console.log(`${key} ${value}`); // "a 5", "b 7", "c 9"
+    //   })
+
+    
     for (const [key, value] in Object.entries(books)) {  
-      if (Object === author) {  
-        authorBooks.push(key, value);
+      if (([_, value]) => value.author === author) {  
+        authorBooks.push(`${key} ${typeof(value)}` + " " + books[key]);
       }
     }
     
