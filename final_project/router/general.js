@@ -21,44 +21,31 @@ public_users.get('/isbn/:isbn',function (req, res) {
     res.send(books[isbn])
  });
   
+
+//  public_users.get('/author/',function (req, res) {
+//     const author = req.params.author;
+//     res.send(typeof(author));
+//  });
+
+
 // Get book details based on author
 public_users.get('/author/:author',function (req, res) {
-    //const author = req.params.author;
+    const author = req.params.author;
 
-    // res.send(JSON.stringify(result,null,4));
-    let author = req.query.author;  
-    // res.send(typeof(author));
-
-    const authorBooks = [];  
-    // res.send(author);
-    // const foundBook = Object.entries(books).find(
-    //     ([_, value]) => value.author === author
-    //   );
-    
-    //   if (!foundBook) {
-    //     return res.status(404).json({ message: "Book not found" });
-    //   }
-    
-    //   return res.status(200).json(foundBook);
-    
-
-    // Object.entries(obj).forEach(([key, value]) => {
-    //     console.log(`${key} ${value}`); // "a 5", "b 7", "c 9"
-    //   })
-
-    
-    for (const [key, value] in Object.entries(books)) {  
-      if (([_, value]) => value.author === author) {  
-        authorBooks.push(`${key} ${typeof(value)}` + " " + books[key]);
-      }
+    let ans = []
+    for(const [key, values] of Object.entries(books)){
+        const book = Object.entries(values);
+        for(let i = 0; i < book.length ; i++){
+            if(book[i][0] == 'author' && book[i][1] == req.params.author){
+                ans.push(books[key]);
+            }
+        }
     }
-    
-    if (authorBooks.length > 0) {  
-      res.send(authorBooks);  
-    } 
-    else {
-      res.status(404).send('No books found for author');  
+    if(ans.length == 0){
+        return res.status(300).json({message: "Author not found"});
     }
+    res.send(ans);
+
 
 });
 
