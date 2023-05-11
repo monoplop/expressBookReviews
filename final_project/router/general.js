@@ -4,7 +4,7 @@ let isValid = require("./auth_users.js").isValid;
 let users = require("./auth_users.js").users;
 const public_users = express.Router();
 
-
+// copy
 const doesExist = (username)=>{
     let userswithsamename = users.filter((user)=>{
         return user.username === username
@@ -19,8 +19,9 @@ const doesExist = (username)=>{
   
 public_users.post("/register", (req,res) => {
 //Write your code here
-const username = req.body.username;
-const password = req.body.password;
+// copy
+const username = req.query.username;
+const password = req.query.password;
 
 
 if (username && password) {
@@ -56,6 +57,7 @@ public_users.get('/isbn/:isbn',function (req, res) {
 public_users.get('/author/:author',function (req, res) {
     const author = req.params.author;
 
+    // copy
     let ans = []
     for(const [key, values] of Object.entries(books)){
         const book = Object.entries(values);
@@ -77,6 +79,7 @@ public_users.get('/author/:author',function (req, res) {
 public_users.get('/title/:title',function (req, res) {
     const title = req.params.title;
 
+    // copy
     let ans = []
     for(const [key, values] of Object.entries(books)){
         const book = Object.entries(values);
@@ -95,6 +98,7 @@ public_users.get('/title/:title',function (req, res) {
 //  Get book review
 public_users.get('/review/:isbn',function (req, res) {
   //Write your code here
+  // copy
   const ISBN = req.params.isbn;
   res.send(books[ISBN].reviews)
 
