@@ -4,7 +4,8 @@ const session = require('express-session')
 const customer_routes = require('./router/auth_users.js').authenticated;
 const genl_routes = require('./router/general.js').general;
 
-let users = []
+let users = require("./router/auth_users.js").users;
+
 //Function to check if the user exists
 const doesExist = (username)=>{
   let userswithsamename = users.filter((user)=>{
