@@ -7,14 +7,12 @@ let users = [{"username":"mono","password":"test"}];
 
 const isValid = (username)=>{ //returns boolean
 //write code to check is the username is valid
-// copy
     const userMatches = users.filter((user) => user.username === username);
     return userMatches.length > 0;
 }
 
 const authenticatedUser = (username,password)=>{ //returns boolean
 //write code to check if username and password match the one we have in records.
-// copy
     const matchingUsers = users.filter((user) => user.username === username && user.password === password);
     return matchingUsers.length > 0;
 }
@@ -45,7 +43,7 @@ regd_users.post("/login", (req,res) => {
   });
 
 // Add a book review
-// copy
+
 regd_users.put("/auth/review/:isbn", (req, res) => {
     const isbn = req.params.isbn;
     const review = req.body.review;
@@ -61,7 +59,7 @@ regd_users.put("/auth/review/:isbn", (req, res) => {
     }
 });
 
-// copy
+
 regd_users.delete("/auth/review/:isbn", (req, res) => {
     const isbn = req.params.isbn;
     const username = req.session.authorization.username;

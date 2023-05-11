@@ -4,7 +4,6 @@ let isValid = require("./auth_users.js").isValid;
 let users = require("./auth_users.js").users;
 const public_users = express.Router();
 
-// copy
 const doesExist = (username)=>{
     let userswithsamename = users.filter((user)=>{
         return user.username === username
@@ -19,7 +18,6 @@ const doesExist = (username)=>{
   
 public_users.post("/register", (req,res) => {
 //Write your code here
-// copy
 const username = req.query.username;
 const password = req.query.password;
 
@@ -47,17 +45,10 @@ public_users.get('/isbn/:isbn',function (req, res) {
  });
   
 
-//  public_users.get('/author/',function (req, res) {
-//     const author = req.params.author;
-//     res.send(typeof(author));
-//  });
-
-
 // Get book details based on author
 public_users.get('/author/:author',function (req, res) {
     const author = req.params.author;
 
-    // copy
     let ans = []
     for(const [key, values] of Object.entries(books)){
         const book = Object.entries(values);
@@ -79,7 +70,6 @@ public_users.get('/author/:author',function (req, res) {
 public_users.get('/title/:title',function (req, res) {
     const title = req.params.title;
 
-    // copy
     let ans = []
     for(const [key, values] of Object.entries(books)){
         const book = Object.entries(values);
@@ -122,7 +112,6 @@ public_users.get('/',function (req, res) {
 
 // Task 11
 // Add the code for getting the book details based on ISBN (done in Task 2) using Promise callbacks or async-await with Axios.
-
 function getFromISBN(isbn){
     let book_ = books[isbn];  
     return new Promise((resolve,reject)=>{
@@ -145,7 +134,6 @@ getFromISBN(isbn).then(
 
 // Task 12
 // Add the code for getting the book details based on Author (done in Task 3) using Promise callbacks or async-await with Axios.
-
 function getFromAuthor(author){
     let output = [];
     return new Promise((resolve,reject)=>{
@@ -171,7 +159,6 @@ getFromAuthor(author)
 // Task 13
 // Add the code for getting the book details based on Title (done in Task 4) using Promise callbacks or async-await with Axios.
 
-  
 function getFromTitle(title){
 let output = [];
 return new Promise((resolve,reject)=>{
